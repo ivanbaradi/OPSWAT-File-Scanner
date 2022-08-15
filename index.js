@@ -15,14 +15,12 @@ const api_key = argv[2]
 //File to use
 const filename = argv[3]
 
-
 //Set of pre-existing methods of SHA256
 const Sha256 = require('./sha256')
 //Imports 'request.js'
 const request_handlers = require('./request_handlers')
 //FileSystem Module
 const fs = require('fs')
-
 
 //Reads a file 
 fs.readFile(filename, (err, data) => {

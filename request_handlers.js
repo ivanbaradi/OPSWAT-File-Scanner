@@ -35,7 +35,7 @@ function sendHashLookUpHTTPRequest(api_key, hash_value, filename){
 
         if(body.error){       
             if(body.error.messages.includes('The hash was not found')){
-                console.log('Invalid hash value. Please upload this file at https://metadefender.opswat.com/ and run this program again.' )
+                console.log('Invalid hash value. Please upload this file at https://metadefender.opswat.com/ and run this program again.')
                 // sendAnalyzeFileHTTPRequest(api_key, filename)
             }
             return

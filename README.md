@@ -16,4 +16,3 @@
 2. <code>git clone https://github.com/ivanbaradi/OPSWAT-File-Scanner</code>
 3. <code>cd OPSWAT-File-Scanner</code>
 4. <code>node index.js abc123 samplefile.txt</code>
-5. hi

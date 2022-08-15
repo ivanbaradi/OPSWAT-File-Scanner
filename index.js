@@ -2,6 +2,14 @@
 
 //List of command line arguments 
 const argv = process.argv
+
+//Incorrect number of parameters used
+if(argv.length != 4){
+    console.log('Please input command line arguments in the following format:')
+    console.log('node index.js {api_key} samplefile.txt')
+    process.exit(1)
+}
+
 //API Key
 const api_key = argv[2]
 //File to use

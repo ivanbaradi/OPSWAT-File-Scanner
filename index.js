@@ -33,6 +33,7 @@ fs.readFile(filepath, (err, data) => {
     const hash_value = Sha256.hash(data.toString())
     // console.log(hash_value)
 
+
     //Sends a request to perform a hash lookup
     request_handlers.sendHashLookUpHTTPRequest(api_key, hash_value, filepath)
 })

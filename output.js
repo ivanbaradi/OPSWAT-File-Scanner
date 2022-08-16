@@ -4,15 +4,15 @@
 
 /**
  * Logs output of the file
- * @param filename: name of the file
+ * @param filepath: name of the file
  * @param scan_results: results after a file is scanned
  */
- function output(filename, scan_results){
+ function output(filepath, scan_results){
 
     const {scan_details} = scan_results
 
     //Logs name of the file
-    console.log(`filename: ${filename.slice(2)} \n`)
+    console.log(`filename: ${filepath.slice(2)} \n`)
 
     //Iterates through every engine from scan_details {key: name of the engine, value: engine's details}
     for(const [engine_name, engine_details] of Object.entries(scan_details)){

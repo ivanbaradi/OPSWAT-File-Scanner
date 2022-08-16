@@ -23,22 +23,22 @@ function getHashLookUpOptions(api_key, hash_value){
 /**
  * Gets HTTP request options for uploading a file
  * @param api_key: API Key given by OPSWAT
- * @param filename: name of a file
+ * @param filepath: path of a file
  * @returns 
  */
-// function getAnalyzeFileOptions(api_key, filename){
-//     return {
-//         "method": "POST",
-//         "url": "https://api.metadefender.com/v4/file",
-//         "headers": {
-//             "apikey": api_key,
-//             "Content-Type": 'application/octet-stream',
-//             "filename": filename.slice(2),
-//         },
-//         "body": "\"@/path/to/data.file\"",
-//         "json": true
-//     }
-// }
+function getAnalyzeFileOptions(api_key, filepath){
+    return {
+        "method": "POST",
+        "url": "https://api.metadefender.com/v4/file",
+        "headers": {
+            "apikey": api_key,
+            "Content-Type": 'application/octet-stream',
+        },
+        "body": `"@/path/to/data.file"`,
+        // "body": filepath,
+        "json": true
+    }
+}
 
 /**
  * Gets HTTP request options for fetching analysis results
@@ -47,21 +47,20 @@ function getHashLookUpOptions(api_key, hash_value){
  * @param dataId: data Id retrieved after uploading a new file
  * @returns 
  */
-// function getFetchAnalysisResultsOptions(api_key, x_file_metadata, dataId){
-//     return {
-//         "method": "GET",
-//         "url": `https://api.metadefender.com/v4/file/${dataId}`,
-//         "headers": {
-//          "apikey": api_key,
-//          "x-file-metadata": x_file_metadata
-//         },
-//         "body": "{}",
-//         "json": true
-//     }
-// }
+function getFetchAnalysisResultsOptions(api_key, dataId){
+    return {
+        "method": "GET",
+        "url": `https://api.metadefender.com/v4/file/${dataId}`,
+        "headers": {
+         "apikey": api_key
+        },
+        "body": "{}",
+        "json": true
+    }
+}
 
 module.exports = {
     getHashLookUpOptions, 
-    // getAnalyzeFileOptions, 
-    // getFetchAnalysisResultsOptions
+    getAnalyzeFileOptions, 
+    getFetchAnalysisResultsOptions
 }

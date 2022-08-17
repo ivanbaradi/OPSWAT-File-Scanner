@@ -47,7 +47,6 @@ function getAnalyzeFileOptions(api_key){
  * Source: https://docs.opswat.com/mdcloud/metadefender-cloud-api-v4/ref#file-lookupbydataid
  * 
  * @param api_key: API Key given by OPSWAT
- * @param x_file_metadata
  * @param dataId: data Id retrieved after uploading a new file
  * @returns 
  */

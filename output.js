@@ -40,10 +40,7 @@
                 case 'threat_found': 
                     if(engine_detail == ''){
                         engine_detail = 'Clean' //If no threat is detected, then add 'Clean'
-                    } else {
-                        num_threats++
                     }
-                    break
             }
 
             //Logs the description of the detail

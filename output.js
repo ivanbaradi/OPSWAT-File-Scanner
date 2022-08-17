@@ -4,15 +4,15 @@
 
 /**
  * Logs output of the file
- * @param filepath: name of the file
+ * @param filename: name of the file
  * @param scan_results: results after a file is scanned
  */
- function output(filepath, scan_results){
+ function output(filename, scan_results){
 
     const {scan_details, scan_all_result_a} = scan_results
 
     //Logs name of the file
-    console.log(`\nfilename: ${filepath.slice(2)}`)
+    console.log(`\nfilename: ${filename}`)
 
     //Logs overall status of all engines
     if(scan_all_result_a == 'No Threat Detected'){

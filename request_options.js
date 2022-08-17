@@ -27,10 +27,9 @@ function getHashLookUpOptions(api_key, hash_value){
  * Source: https://docs.opswat.com/mdcloud/metadefender-cloud-api-v4/ref#file-upload
  * 
  * @param api_key: API Key given by OPSWAT
- * @param filepath: path of a file
  * @returns 
  */
-function getAnalyzeFileOptions(api_key, filepath){
+function getAnalyzeFileOptions(api_key){
     return {
         "method": "POST",
         "url": "https://api.metadefender.com/v4/file",
@@ -38,8 +37,7 @@ function getAnalyzeFileOptions(api_key, filepath){
             "apikey": api_key,
             "Content-Type": 'application/octet-stream',
         },
-        // "body": `"@/path/to/data.file"`,
-        "body": `@/path/to/${filepath}`,
+        "body": `"@/path/to/data.file"`,
         "json": true
     }
 }

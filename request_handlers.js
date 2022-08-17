@@ -17,7 +17,7 @@ const {getHashLookUpOptions, getAnalyzeFileOptions, getFetchAnalysisResultsOptio
 function produceOutput(filepath, body){
     // console.log(body)
     const {scan_results} = body
-    if (scan_results) _.output(filepath, scan_results)
+    if (scan_results) _.output(filepath.slice(2), scan_results)
 }
 
 
@@ -34,8 +34,6 @@ function sendHashLookUpHTTPRequest(api_key, hash_value, filepath){
         
         if (error) throw new Error(error);
 
-        // console.log('After performing a hash lookup:')
-        // console.log(body)
 
         //Most likely, there is an invalid hash value and file needs to be uploaded
         if(body.error){       
@@ -44,7 +42,10 @@ function sendHashLookUpHTTPRequest(api_key, hash_value, filepath){
             }
             return
         } 
-            
+
+        // console.log('After performing a hash lookup:')
+        // console.log(body)
+
         produceOutput(filepath, body)
     });
 }
@@ -57,11 +58,11 @@ function sendHashLookUpHTTPRequest(api_key, hash_value, filepath){
  * @param filepath: path of a file
  */
 function sendAnalyzeFileHTTPRequest(api_key, filepath){
-    request(getAnalyzeFileOptions(api_key, filepath), function(error, response, body){
+    request(getAnalyzeFileOptions(api_key), function(error, response, body){
         if (error) throw new Error(error)
 
-        console.log("After analyzing the file:")
-        console.log(body)
+        // console.log("After analyzing the file:")
+        // console.log(body)
 
         sendFetchAnalyisResultHTTPRequest(api_key, body.data_id, filepath)
     })
@@ -79,10 +80,17 @@ function sendFetchAnalyisResultHTTPRequest(api_key, dataId, filepath){
     request(getFetchAnalysisResultsOptions(api_key, dataId), function(error, response, body){
         if (error) throw new Error(error)
 
-        console.log("After fetching analysis results:")
-        console.log(body)
+        //Repeatedly sends 'Fetch Analysis Results' request until the file is no longer in queue
+        if(body.scan_results.scan_all_result_a != 'In queue'){
+            
+            // console.log("After fetching analysis results:")
+            // console.log(body)
 
-        produceOutput(filepath, body)
+            produceOutput(filepath, body)
+            return
+        } 
+
+        sendFetchAnalyisResultHTTPRequest(api_key, dataId, filepath)
     })
 }
 

@@ -9,10 +9,17 @@
  */
  function output(filepath, scan_results){
 
-    const {scan_details} = scan_results
+    const {scan_details, scan_all_result_a} = scan_results
 
     //Logs name of the file
-    console.log(`filename: ${filepath.slice(2)} \n`)
+    console.log(`\nfilename: ${filepath.slice(2)}`)
+
+    //Logs overall status of all engines
+    if(scan_all_result_a == 'No Threat Detected'){
+        console.log(`overall_status: Clean\n`)
+    } else {
+        console.log(`overall_status: ${scan_all_result_a}\n`)
+    }
 
     //Iterates through every engine from scan_details {key: name of the engine, value: engine's details}
     for(const [engine_name, engine_details] of Object.entries(scan_details)){
@@ -27,20 +34,24 @@
             if(detail_name == 'scan_time') continue
 
             switch(detail_name){
-                case 'scan_result_i': //Renames 'scan_result_i' to 'scan_result'
-                    detail_name = 'scan_result'
+                case 'scan_result_i': 
+                    detail_name = 'scan_result' //Renames 'scan_result_i' to 'scan_result'
                     break
-                case 'threat_found': //If no threat is detected, then add 'Clean'
+                case 'threat_found': 
                     if(engine_detail == ''){
-                        engine_detail = 'Clean'
+                        engine_detail = 'Clean' //If no threat is detected, then add 'Clean'
+                    } else {
+                        num_threats++
                     }
                     break
             }
 
+            //Logs the description of the detail
             console.log(`${detail_name}: ${engine_detail}`)
         }
         console.log()
     }
+
 }
 
 module.exports = {output}

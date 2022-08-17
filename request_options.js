@@ -30,7 +30,7 @@ function getHashLookUpOptions(api_key, hash_value){
  * @param filepath: path of a file
  * @returns 
  */
-function getAnalyzeFileOptions(api_key){
+function getAnalyzeFileOptions(api_key, filepath){
     return {
         "method": "POST",
         "url": "https://api.metadefender.com/v4/file",
@@ -38,8 +38,8 @@ function getAnalyzeFileOptions(api_key){
             "apikey": api_key,
             "Content-Type": 'application/octet-stream',
         },
-        "body": `"@/path/to/data.file"`,
-        // "body": data,
+        // "body": `"@/path/to/data.file"`,
+        "body": `@/path/to/${filepath}`,
         "json": true
     }
 }

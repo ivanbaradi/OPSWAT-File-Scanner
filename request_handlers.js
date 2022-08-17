@@ -34,8 +34,8 @@ function sendHashLookUpHTTPRequest(api_key, hash_value, filepath){
         
         if (error) throw new Error(error);
 
-        console.log('After performing a hash lookup:')
-        console.log(body)
+        // console.log('After performing a hash lookup:')
+        // console.log(body)
 
         //Most likely, there is an invalid hash value and file needs to be uploaded
         if(body.error){       
@@ -45,7 +45,7 @@ function sendHashLookUpHTTPRequest(api_key, hash_value, filepath){
             return
         } 
             
-        // produceOutput(filepath, body)
+        produceOutput(filepath, body)
     });
 }
 
@@ -57,7 +57,7 @@ function sendHashLookUpHTTPRequest(api_key, hash_value, filepath){
  * @param filepath: path of a file
  */
 function sendAnalyzeFileHTTPRequest(api_key, filepath){
-    request(getAnalyzeFileOptions(api_key), function(error, response, body){
+    request(getAnalyzeFileOptions(api_key, filepath), function(error, response, body){
         if (error) throw new Error(error)
 
         console.log("After analyzing the file:")

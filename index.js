@@ -6,13 +6,13 @@ const argv = process.argv
 //Incorrect number of parameters used
 if(argv.length != 4){
     console.log('Please input command line arguments in the following format:')
-    console.log('node index.js {api_key} samplefile.txt')
+    console.log('node index.js {api_key} {filename}')
     process.exit(1)
 }
 
 //API Key
 const api_key = argv[2]
-//File Path
+//File path of any file
 const filepath = `./${argv[3]}`
 
 //Set of pre-existing methods of SHA256
